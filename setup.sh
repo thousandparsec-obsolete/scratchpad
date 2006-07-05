@@ -5,7 +5,6 @@ cd ..
 # Setup the Darcs helper scripts
 for FILE in `ls scratchpad/darcs-help/*.sh`; do
 	SHORT=`basename $FILE`
-	echo $FILE $SHORT
 	if [ ! -e $SHORT ]; then
 		ln -s $FILE $SHORT
 	fi
@@ -24,6 +23,7 @@ if [ -e libtpproto-py ]; then
 	fi
 	ln -s ../libtpproto-py netlib
 	cd ..
+fi
 
 if [ -e libtpclient-py ]; then
 	cd tp
@@ -37,11 +37,14 @@ fi
 # Setup the Python Server for inplace operation
 if [ -e tpserver-py ]; then
 	cd tpserver-py
+	chmod a+x tpserver-py tpserver-py-tool tpserver-py-turn
+
 	cd tp
 	if [ ! -e netlib ]; then
 		ln -s ../../libtpproto-py netlib
 	fi
 	cd ..
+
 	cd ..
 fi
 
@@ -49,8 +52,11 @@ fi
 if [ -e tpclient-pywx ]; then
 	cd tpclient-pywx
 
+	chmod a+x tpclient-pywx
+
 	if [ -e media ]; then 
 		rm media
 	fi
-	ln -s ../../media media
+	ln -s ../media media
+	cd ..
 fi
