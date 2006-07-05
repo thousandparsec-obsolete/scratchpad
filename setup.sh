@@ -1,5 +1,7 @@
 #! /bin/sh
 
+cd ..
+
 if [ ! -d tp ]; then
 	mkdir tp
 fi
