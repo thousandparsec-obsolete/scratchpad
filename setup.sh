@@ -2,36 +2,53 @@
 
 cd ..
 
+# Setup the Darcs helper scripts
+for FILE in `ls scratchpad/darcs-help/*.sh`; do
+	SHORT=`basename $FILE`
+	echo $FILE $SHORT
+	if [ ! -e $SHORT ]; then
+		ln -s $FILE $SHORT
+	fi
+done
+
+# Setup the links for inplace operation
 if [ ! -d tp ]; then
 	mkdir tp
+	touch tp/__init__.py
 fi
-cd tp
 
-if [ -e netlib ]; then
-	rm netlib
+if [ -e libtpproto-py ]; then
+	cd tp
+	if [ -e netlib ]; then
+		rm netlib
+	fi
+	ln -s ../libtpproto-py netlib
+	cd ..
+
+if [ -e libtpclient-py ]; then
+	cd tp
+	if [ -e client ]; then
+		rm client
+	fi
+	ln -s ../libtpclient-py/client client
+	cd ..
 fi
-ln -s ../libtpproto-py netlib
 
-if [ -e client ]; then
-	rm client
-fi
-ln -s ../libtpclient-py/client client
-
-touch __init__.py
-
-cd ..
-
+# Setup the Python Server for inplace operation
 if [ -e tpserver-py ]; then
 	cd tpserver-py
 	cd tp
 	if [ ! -e netlib ]; then
 		ln -s ../../libtpproto-py netlib
 	fi
+	cd ..
+	cd ..
 fi
 
+# Setup the tpclient-pywx for inplace operation
 if [ -e tpclient-pywx ]; then
 	cd tpclient-pywx
-	cd graphics
+
 	if [ -e media ]; then 
 		rm media
 	fi
