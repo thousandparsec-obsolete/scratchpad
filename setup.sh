@@ -10,6 +10,10 @@ for FILE in `ls scratchpad/darcs-help/*.sh`; do
 	fi
 done
 
+if [ -e tp ]; then
+	rm -rf tp
+fi
+
 # Setup the Python Server for inplace operation
 if [ -e tpserver-py ]; then
 	cd tpserver-py
@@ -30,9 +34,10 @@ if [ -e tpclient-pywx ]; then
 
 	chmod a+x tpclient-pywx
 
-	if [ ! -e tp ]; then
-		mkdir tp
+	if [ -e tp ]; then
+		rm -rf tp
 	fi
+	mkdir tp
 	cd tp
 	if [ ! -e netlib ]; then
 		if [ ! -e __init__.py ]; then
