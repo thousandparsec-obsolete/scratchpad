@@ -10,30 +10,6 @@ for FILE in `ls scratchpad/darcs-help/*.sh`; do
 	fi
 done
 
-# Setup the links for inplace operation
-if [ ! -d tp ]; then
-	mkdir tp
-	touch tp/__init__.py
-fi
-
-if [ -e libtpproto-py ]; then
-	cd tp
-	if [ -e netlib ]; then
-		rm netlib
-	fi
-	ln -s ../libtpproto-py netlib
-	cd ..
-fi
-
-if [ -e libtpclient-py ]; then
-	cd tp
-	if [ -e client ]; then
-		rm client
-	fi
-	ln -s ../libtpclient-py/client client
-	cd ..
-fi
-
 # Setup the Python Server for inplace operation
 if [ -e tpserver-py ]; then
 	cd tpserver-py
@@ -41,7 +17,7 @@ if [ -e tpserver-py ]; then
 
 	cd tp
 	if [ ! -e netlib ]; then
-		ln -s ../../libtpproto-py netlib
+		ln -s ../../libtpproto-py/tp/netlib netlib
 	fi
 	cd ..
 
@@ -54,9 +30,17 @@ if [ -e tpclient-pywx ]; then
 
 	chmod a+x tpclient-pywx
 
-	if [ -e media ]; then 
-		rm media
+	if [ ! -e tp ]; then
+		mkdir tp
 	fi
-	ln -s ../media media
-	cd ..
+	cd tp
+	if [ ! -e netlib ]; then
+		if [ ! -e __init__.py ]; then
+			ln -s ../../libtpproto-py/tp/__init__.py __init__.py
+		fi
+		ln -s ../../libtpproto-py/tp/netlib netlib
+	fi
+	if [ ! -e client ]; then
+		ln -s ../../libtpclient-py/tp/client client
+	fi
 fi
