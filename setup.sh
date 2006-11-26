@@ -39,10 +39,10 @@ if [ -e tpclient-pywx ]; then
 	fi
 	mkdir tp
 	cd tp
+	if [ ! -e __init__.py ]; then
+		touch __init__.py
+	fi
 	if [ ! -e netlib ]; then
-		if [ ! -e __init__.py ]; then
-			ln -s ../../libtpproto-py/tp/__init__.py __init__.py
-		fi
 		ln -s ../../libtpproto-py/tp/netlib netlib
 	fi
 	if [ ! -e client ]; then
