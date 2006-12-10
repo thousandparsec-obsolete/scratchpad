@@ -42,7 +42,6 @@ IF NOT EXIST ..\..\libtpclient-py GOTO ERROR
 mkdir client
 xcopy /S ..\..\libtpclient-py\tp\client client
 
-pause
 exit
 
 :ERROR
