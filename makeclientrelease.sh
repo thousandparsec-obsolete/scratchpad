@@ -47,5 +47,5 @@ cp -ar ../libtpproto-py/tp/* ./tp/
 cd ..
 mv tpclient-pywx tpclient-pywx-$1
 
-tar -jcvf ../tpclient-pywx-$1.inplace.tar.bz2 tpclient-pywx-$1
+tar -jcvf ../tpclient-pywx-$1-inplace.tar.bz2 tpclient-pywx-$1
 #rm -rf temp
