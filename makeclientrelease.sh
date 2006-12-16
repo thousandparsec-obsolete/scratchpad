@@ -18,7 +18,7 @@ darcs get --partial http://darcs.thousandparsec.net/repos/tpclient-pywx
 cd tpclient-pywx
 # Remove all the useless stuff
 for FILE in $USELESS; do
-	rm -rf `find . -name $FILE`
+	rm -rf `find . -wholename \*$FILE`
 done
 cd ..
 tar -jcvf ../tpclient-pywx-$1.tar.bz2 tpclient-pywx
