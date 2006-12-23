@@ -48,4 +48,25 @@ if [ -e tpclient-pywx ]; then
 	if [ ! -e client ]; then
 		ln -s ../../libtpclient-py/tp/client client
 	fi
+	cd ..
+
+	cd ..
+fi
+
+if [ -e tpclient-pywx-dev ]; then
+	echo "Setting up tpclient-pywx Development Branch"
+	cd tpclient-pywx-dev
+
+	chmod a+x tpclient-pywx
+
+	if [ -e tp ]; then
+		rm -rf tp
+	fi
+	mkdir tp
+	cd tp
+	if [ ! -e __init__.py ]; then
+		touch __init__.py
+	fi
+	ln -fs ../../libtpproto-py/tp/netlib netlib
+	ln -fs ../../libtpclient-py-dev/tp/client client
 fi
