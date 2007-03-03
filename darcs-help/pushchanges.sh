@@ -7,7 +7,7 @@ for DIR in ls *; do
 			echo $DIR
 			echo "------------------------------------------"
 			cd $DIR
-			darcs push -a tim@darcs.thousandparsec.net:/var/lib/darcs/repos/$DIR
+			darcs push tim@darcs.thousandparsec.net:/var/lib/darcs/repos/$DIR
 			cd ..
 			echo "------------------------------------------"
 		fi
