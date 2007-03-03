@@ -7,7 +7,10 @@ for DIR in ls *; do
 			echo $DIR
 			echo "------------------------------------------"
 			cd $DIR
-			darcs push tim@darcs.thousandparsec.net:/var/lib/darcs/repos/$DIR
+			if [ "x$TPUSER" == "x" ]; then
+				TPUSER=$USER
+			fi
+			darcs push $TPUSER@darcs.thousandparsec.net:/var/lib/darcs/repos/$DIR
 			cd ..
 			echo "------------------------------------------"
 		fi
