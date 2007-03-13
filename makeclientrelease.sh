@@ -9,7 +9,7 @@ if [ -d temp ]; then
 	rm -rf temp
 fi
 
-USELESS="_darcs .boring setup.py setup.nsi Makefile MANIFEST.in *.pyc *.spec tests STYLE doc/mac"
+USELESS="_darcs .boring setup.py setup.nsi Makefile MANIFEST.in *.pyc *.spec tests STYLE doc/mac debian"
 
 mkdir temp
 cd temp
@@ -25,16 +25,22 @@ tar -jcvf ../tpclient-pywx-$1.tar.bz2 tpclient-pywx
 
 darcs get --partial http://darcs.thousandparsec.net/repos/libtpclient-py
 cd libtpclient-py
+rm -rf debian
+mkdir libtpclient_py.egg-info
 python setup.py sdist --formats=bztar
 python setup.py bdist --formats=egg,rpm
+rm -rf libtpclient_py.egg-info
 rm ./dist/*.tar.gz ./dist/*.src.rpm
 cp ./dist/* ../../
 cd ..
 
 darcs get --partial http://darcs.thousandparsec.net/repos/libtpproto-py
 cd libtpproto-py
+rm -rf debian
+mkdir libtpproto_py.egg-info
 python setup.py sdist --formats=bztar
 python setup.py bdist --formats=egg,rpm
+rm -rf libtpproto_py.egg-info
 rm ./dist/*.tar.gz ./dist/*.src.rpm
 cp ./dist/* ../../
 cd ..
