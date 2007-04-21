@@ -1,8 +1,8 @@
 #! /bin/sh
 
-for DIR in ls *; do
+for DIR in `ls *`; do
 	if [ -d $DIR ]; then
-		if [ -d $DIR/_darcs ]; then
+		if [ -d $DIR/.git ]; then
 			echo
 			echo $DIR
 			echo "------------------------------------------"
@@ -10,7 +10,9 @@ for DIR in ls *; do
 			if [ "x$TPUSER" == "x" ]; then
 				TPUSER=$USER
 			fi
-			darcs push $TPUSER@darcs.thousandparsec.net:/var/lib/darcs/repos/$DIR
+			# FIXME: This should push all branches...
+			cg-branch-chg origin git+ssh://$TPUSER@git.thousandparsec.net/var/lib/git/$DIR.git
+			cg-push
 			cd ..
 			echo "------------------------------------------"
 		fi
