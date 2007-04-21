@@ -18,7 +18,7 @@ if [ $RESULT -eq 0 ]; then
 	fi
 
 	# Our first job is to find if darcs is installed
-	RCS=darcs
+	RCS=cogito
 	RESULT=`dpkg -l $RCS 2>&1`
 	if [ "x$RESULT" = "xNo packages found matching $RCS." ]; then
 		echo "I'm sorry but we can't continue until you install $RCS"
@@ -40,26 +40,26 @@ if [ -e "scratchpad" ]; then
 	echo "A directory called scratchpad already exists!"
 	echo "Doing a pull in the directory instead.."
 	cd scratchpad
-	darcs pull -a
+	cg-update
 	cd ..
 else
-	darcs get --partial http://darcs.thousandparsec.net/repos/scratchpad
+	cg-clone http://git.thousandparsec.net/git/scratchpad.git
 fi
 
 # FIXME: Should check that this script is the newest version...
 RESULT=`md5sum scratchpad/magicsetup.sh`
 
 # Now we need to download all the stuff we need
-REPOS="libtpproto-py libtpclient-py libtpclient-py-dev tpclient-pywx tpclient-pywx-dev tpserver-py"
+REPOS="libtpproto-py libtpclient-py libtpclient-py-dev tpclient-pywx tpserver-py"
 for repo in $REPOS; do
 	if [ -e $repo ]; then
 		echo "A directory called $repo already exists!"
 		cd $repo
-		darcs pull -a
+		cg-update
 		cd ..
 	else
 		echo "Downloading the following repository $repo."
-		darcs get --partial http://darcs.thousandparsec.net/repos/$repo
+		cg-clone http://git.thousandparsec.net/git/$repo.git
 	fi
 done
 
