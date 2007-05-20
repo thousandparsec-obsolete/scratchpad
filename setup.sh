@@ -18,7 +18,6 @@ fi
 # Setup the Python Server for inplace operation
 if [ -e tpserver-py ]; then
 	cd tpserver-py
-	chmod a+x tpserver-py tpserver-py-tool tpserver-py-turn
 
 	cd tp
 	if [ ! -e netlib ]; then
