@@ -4,12 +4,12 @@
 cd ..
 
 # Setup the Darcs helper scripts
-for FILE in `ls scratchpad/git-helpers/*.sh`; do
-	SHORT=`basename $FILE`
-	if [ ! -e $SHORT ]; then
-		ln -s $FILE $SHORT
-	fi
-done
+#for FILE in `ls scratchpad/git-helpers/*.sh`; do
+#	SHORT=`basename $FILE`
+#	if [ ! -e $SHORT ]; then
+#		ln -s $FILE $SHORT
+#	fi
+#done
 
 if [ -e tp ]; then
 	rm -rf tp
