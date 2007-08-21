@@ -11,9 +11,10 @@ cd ..
 #	fi
 #done
 
-if [ -e tp ]; then
-	rm -rf tp
-fi
+# FIXME: This is very dangerous!
+#if [ -e tp ]; then
+#	rm -rf tp
+#fi
 
 # Setup the Python Server for inplace operation
 if [ -e tpserver-py ]; then
