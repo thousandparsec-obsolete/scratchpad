@@ -78,9 +78,11 @@ if __name__ == '__main__':
 					print line[:-1]
 				print "EOF"
 				print
+				continue
 
 			while os.path.islink(location):
 				# Figure out where this link goes too...
+				print "# removing link"
 				print "rm %s" % location
 				location = os.readlink(location)	
 	
@@ -90,12 +92,29 @@ if __name__ == '__main__':
 						raise IOError('testing')
 
 			if os.path.isdir(location):
+				print "# removing dir"
 				print "rm -rf %s" % location
 				print
 
 			if os.path.isfile(location):
+				print "# removing file"
 				print "rm %s" % location
 				print
 
 		except IOError:
 			pass
+
+	# Check for the tpclient-pywx stuff
+	tpclientfiles = [ \
+		"/usr/local/bin/tpclient-pywx", 
+		"/usr/local/lib/tpclient-pywx", 
+		"/usr/local/share/tpclient-pywx"
+	]
+
+	for bits in tpclientfiles:
+		if os.path.exists(bits):
+			print "rm -rf %s" % bits
+
+	#if os.path.exists("/usr/local/lib/tpclient-pywx"):
+	# /usr/local/share/locale/%s/LC_MESSAGES/
+	# /usr/local/share/tpclient-pywx
