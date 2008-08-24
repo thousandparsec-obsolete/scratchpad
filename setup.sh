@@ -94,3 +94,30 @@ if [ -e tpsai-py ]; then
 
 	cd ..
 fi
+
+
+# Setup daneel-ai for inplace operation
+if [ -e daneel-ai ]; then
+    echo "Setting up daneel-ai for inplace operation..."
+    cd daneel-ai
+
+    chmod a+x daneel-ai
+
+    if [ -e tp ]; then
+        rm -rf tp
+    fi
+    mkdir tp
+    cd tp
+    if [ ! -e __init__.py ]; then
+        touch __init__.py
+    fi
+    if [ ! -e netlib ]; then
+        ln -s ../../libtpproto-py/tp/netlib netlib
+    fi
+    if [ ! -e client ]; then
+        ln -s ../../libtpclient-py/tp/client client
+    fi
+    cd ..
+
+    cd ..
+fi
