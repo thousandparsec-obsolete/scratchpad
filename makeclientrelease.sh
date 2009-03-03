@@ -44,7 +44,7 @@ mkdir temp
 ##########################################################################
 cd $WORKING
 
-cg-clone $URL/tpclient-pywx || exit 1
+git clone $URL/tpclient-pywx.git || exit 1
 cd tpclient-pywx
 # Remove all the useless stuff
 for FILE in $USELESS; do
@@ -59,7 +59,7 @@ mv tpclient-pywx-$1 tpclient-pywx
 
 # libtpproto-py
 ##########################################################################
-cg-clone $URL/libtpproto-py || exit 1
+git clone $URL/libtpproto-py.git || exit 1
 cd libtpproto-py
 
 rm -rf debian
@@ -74,7 +74,7 @@ cd $WORKING
 
 # libtpclient-py
 ##########################################################################
-cg-clone $URL/libtpclient-py || exit 1
+git clone $URL/libtpclient-py.git || exit 1
 cd libtpclient-py
 
 rm -rf debian
