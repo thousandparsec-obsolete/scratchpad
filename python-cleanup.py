@@ -10,6 +10,10 @@
 
 import sys
 import os
+import os.path
+
+# Modules names we create
+modules = ['libtpproto', 'libtpclient' 'tpserver-py', 'tp', 'daneel']
 
 if __name__ == '__main__':
 	toclean = set()
@@ -21,14 +25,11 @@ if __name__ == '__main__':
 		if not os.path.exists(location):
 			continue
 
-		if location.endswith('tp'):
-			toclean.add(location)
-			continue
-
 		if location.find('.egg') != -1:
-			if location.find('libtp') != -1:
-				toclean.add(location)
-				continue
+			for module in modules:
+				if location.find(module) != -1:
+					toclean.add(location)
+			continue
 
 		if os.path.isdir(location):
 			# Check for, .egg files
@@ -37,17 +38,30 @@ if __name__ == '__main__':
 
 			for file in os.listdir(location):
 				if file.find('.egg') != -1 or file.endswith('.pth'):
-					if file.startswith('libtp'):
-						toclean.add(os.path.join(location, file))
+					for module in modules:
+						if file.startswith(module):
+							toclean.add(os.path.join(location, file))
 
-				if file == 'tp':
-					toclean.add(os.path.join(location, file))
+				for module in modules:
+					if file == module:
+						toclean.add(os.path.join(location, file))
 
 				if file == 'easy-install.pth':
 					for line in open(os.path.join(location, file)).xreadlines():
-						if line.find('libtp') != -1:
-							toclean.add(os.path.join(location, file))
-							break
+						for module in modules:
+							if line.find(module) != -1:
+								toclean.add(os.path.join(location, file))
+								break
+						else:
+							continue
+
+	# Check /usr/bin for scripts
+	scripts = ["daneel-ai", "tpclient-pywx"]
+	for script in scripts:
+		for i in os.environ['PATH'].split(':'):
+			s = os.path.join(i, script)
+			if os.path.exists(s):
+				toclean.add(s)
 
 	tocleanu = set()
 	while len(toclean) > 0:
