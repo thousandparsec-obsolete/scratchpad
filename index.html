@@ -1,0 +1,297 @@
+<html>
+
+<style>
+	table {
+		border-collapse:collapse;
+	}
+	
+	td.content {
+		text-align: center;
+		color: #ffffff;
+		background-color: black;
+	}
+
+	td.top-left {
+		height: 26px;
+		width: 52px;
+		background-image: url(img/box-top-left_t.png);
+	}
+
+	td.top {
+		height: 26px;
+		background-image: url(img/box-top-middle_t.png);
+		background-repeat: repeat-x;
+	}
+
+	td.top-right {
+		height: 26px;
+		width: 52px;
+		background-image: url(img/box-top-right_t.png);
+	}
+
+	td.right {
+		width: 52px;
+		background-image: url(img/box-mid-right.png);
+	}
+
+	td.left {
+		width: 52px;
+		background-image: url(img/box-mid-left.png);
+	}
+
+	td.bottom-left {
+		height: 26px;
+		width: 52px;
+		background-image: url(img/box-btm-left_t.png);
+	}
+
+	td.bottom {
+		height: 26px;
+		background-image: url(img/box-btm-middle_t.png);
+	}
+
+	td.bottom-right {
+		height: 26px;
+		width: 52px;
+		background-image: url(img/box-btm-right_t.png);
+	}
+
+	td.middle-right {
+		height: 26px;
+		width: 52px;
+		background-image: url(img/box-mid-right-corner_t.png);
+	}
+
+	td.middle-left {
+		height: 26px;
+		width: 52px;
+		background-image: url(img/box-mid-left-corner_t.png);
+	}
+
+	.bottomSmall {
+	}
+	.bottomLeft {
+		display: none;
+	}
+	.bottomMiddle {
+		display: none;
+	}
+	.bottomRight {
+		display: none;
+	}
+
+</style>
+
+
+<script type="text/javascript">
+
+function getCSSRule(ruleName) {               // Return requested style obejct
+   var ruleName=ruleName.toLowerCase();                   // Convert test string to lower case.
+   if (document.styleSheets) {                            // If browser can play with stylesheets
+      for (var i=0; i<document.styleSheets.length; i++) { // For each stylesheet
+         var styleSheet=document.styleSheets[i];          // Get the current Stylesheet
+         var ii=0;                                        // Initialize subCounter.
+         var cssRule=false;                               // Initialize cssRule. 
+         do {                                             // For each rule in stylesheet
+            if (styleSheet.cssRules) {                    // Browser uses cssRules?
+               cssRule = styleSheet.cssRules[ii];         // Yes --Mozilla Style
+            } else {                                      // Browser usses rules?
+               cssRule = styleSheet.rules[ii];            // Yes IE style. 
+            }                                             // End IE check.
+            if (cssRule)  {                               // If we found a rule...
+               if (cssRule.selectorText.toLowerCase()==ruleName) { //  match ruleName?
+                  return cssRule;                         // return the style object.
+               }                                          // End found rule name
+            }                                             // end found cssRule
+            ii++;                                         // Increment sub-counter
+         } while (cssRule);                               // end While loop
+      }                                                   // end For loop
+   }                                                      // end styleSheet ability check
+   return false;                                          // we found NOTHING!
+}                                                         // end getCSSRule 
+
+function showSmall() {
+	var bottomSmall  = getCSSRule(".bottomSmall");
+	var bottomLeft   = getCSSRule(".bottomLeft");
+	var bottomMiddle = getCSSRule(".bottomMiddle");
+	var bottomRight  = getCSSRule(".bottomRight");
+	
+	bottomSmall.style.display = '';
+	bottomLeft.style.display = 'none';
+	bottomMiddle.style.display = 'none';
+	bottomRight.style.display = 'none';
+}
+
+function showLeft() {
+	var bottomSmall  = getCSSRule(".bottomSmall");
+	var bottomLeft   = getCSSRule(".bottomLeft");
+	var bottomMiddle = getCSSRule(".bottomMiddle");
+	var bottomRight  = getCSSRule(".bottomRight");
+	
+	bottomSmall.style.display = 'none';
+	bottomLeft.style.display = '';
+	bottomMiddle.style.display = 'none';
+	bottomRight.style.display = 'none';
+}
+
+function showMiddle() {
+	var bottomSmall  = getCSSRule(".bottomSmall");
+	var bottomLeft   = getCSSRule(".bottomLeft");
+	var bottomMiddle = getCSSRule(".bottomMiddle");
+	var bottomRight  = getCSSRule(".bottomRight");
+	
+	bottomSmall.style.display = 'none';
+	bottomLeft.style.display = 'none';
+	bottomMiddle.style.display = '';
+	bottomRight.style.display = 'none';
+}
+
+function showRight() {
+	var bottomSmall  = getCSSRule(".bottomSmall");
+	var bottomLeft   = getCSSRule(".bottomLeft");
+	var bottomMiddle = getCSSRule(".bottomMiddle");
+	var bottomRight  = getCSSRule(".bottomRight");
+	
+	bottomSmall.style.display = 'none';
+	bottomLeft.style.display = 'none';
+	bottomMiddle.style.display = 'none';
+	bottomRight.style.display = '';
+}
+
+</script>
+
+<body>
+
+<a href="#" onClick="showSmall();">Hide Small</a>
+<a href="#" onClick="showLeft();">Hide Left</a>
+<a href="#" onClick="showMiddle();">Hide Middle</a>
+<a href="#" onClick="showRight();">Hide Right</a>
+
+<table>
+	<tr>
+		<td class="top-left">&nbsp;</td>
+		<td class="top">&nbsp;</td>
+		<td class="top-right">&nbsp;</td>
+		<td class="empty">&nbsp;</td>
+		<td class="top-left">&nbsp;</td>
+		<td class="top">&nbsp;</td>
+		<td class="top-right">&nbsp;</td>
+		<td class="empty">&nbsp;</td>
+		<td class="top-left">&nbsp;</td>
+		<td class="top">&nbsp;</td>
+		<td class="top-right">&nbsp;</td>
+	</tr><tr>	
+		<td class="left">&nbsp;</td>
+		<td class="content">Play!</td>
+		<td class="right">&nbsp;</td>
+		<td class="">&nbsp;</td>
+		<td class="left">&nbsp;</td>
+		<td class="content">Bond!</td>
+		<td class="right">&nbsp;</td>
+		<td class="">&nbsp;</td>
+		<td class="left">&nbsp;</td>
+		<td class="content">Develop!</td>
+		<td class="right">&nbsp;</td>
+
+	</tr><tr class="bottomSmall">
+		<td class="bottom-left">&nbsp;</td>
+		<td class="bottom">&nbsp;</td>
+		<td class="bottom-right">&nbsp;</td>
+		<td class="">&nbsp;</td>
+		<td class="bottom-left">&nbsp;</td>
+		<td class="bottom">&nbsp;</td>
+		<td class="bottom-right">&nbsp;</td>
+		<td class="">&nbsp;</td>
+		<td class="bottom-left">&nbsp;</td>
+		<td class="bottom">&nbsp;</td>
+		<td class="bottom-right">&nbsp;</td>
+
+	</tr><tr class="bottomLeft">
+		<td class="left">&nbsp;</td>
+		<td class="content">&nbsp;</td>
+		<td class="right">&nbsp;</td>
+		<td class="">&nbsp;</td>
+		<td class="bottom-left">&nbsp;</td>
+		<td class="bottom">&nbsp;</td>
+		<td class="bottom-right">&nbsp;</td>
+		<td class="">&nbsp;</td>
+		<td class="bottom-left">&nbsp;</td>
+		<td class="bottom">&nbsp;</td>
+		<td class="bottom-right">&nbsp;</td>
+	</tr><tr class="bottomLeft">
+		<td class="left">&nbsp;</td>
+		<td class="content"></td>
+		<td class="middle-right">&nbsp;</td>
+		<td class="top" colspan=7>&nbsp;</td>
+		<td class="top-right">&nbsp;</td>
+	</tr><tr class="bottomLeft">
+		<td class="left">&nbsp;</td>
+		<td class="content" colspan=9>c</td>
+		<td class="right">&nbsp;</td>
+	</tr><tr class="bottomLeft">
+		<td class="bottom-left">&nbsp;</td>
+		<td class="bottom" colspan=9>&nbsp;</td>
+		<td class="bottom-right">&nbsp;</td>
+
+	</tr><tr class="bottomMiddle">
+		<td class="bottom-left">&nbsp;</td>
+		<td class="bottom">&nbsp;</td>
+		<td class="bottom-right">&nbsp;</td>
+		<td class="">&nbsp;</td>
+		<td class="left">&nbsp;</td>
+		<td class="content">&nbsp;</td>
+		<td class="right">&nbsp;</td>
+		<td class="">&nbsp;</td>
+		<td class="bottom-left">&nbsp;</td>
+		<td class="bottom">&nbsp;</td>
+		<td class="bottom-right">&nbsp;</td>
+	</tr><tr class="bottomMiddle">
+		<td class="top-left">&nbsp;</td>
+		<td class="top" colspan=3>&nbsp;</td>
+		<td class="middle-left">&nbsp;</td>
+		<td class="content">&nbsp;</td>
+		<td class="middle-right">&nbsp;</td>
+		<td class="top" colspan=3>&nbsp;</td>
+		<td class="top-right">&nbsp;</td>
+	</tr><tr class="bottomMiddle">
+		<td class="left">&nbsp;</td>
+		<td class="content" colspan=9>c</td>
+		<td class="right">&nbsp;</td>
+	</tr><tr class="bottomMiddle">
+		<td class="bottom-left">&nbsp;</td>
+		<td class="bottom" colspan=9>&nbsp;</td>
+		<td class="bottom-right">&nbsp;</td>
+
+	</tr><tr class="bottomRight">
+		<td class="bottom-left">&nbsp;</td>
+		<td class="bottom">&nbsp;</td>
+		<td class="bottom-right">&nbsp;</td>
+		<td class="">&nbsp;</td>
+		<td class="bottom-left">&nbsp;</td>
+		<td class="bottom">&nbsp;</td>
+		<td class="bottom-right">&nbsp;</td>
+		<td class="">&nbsp;</td>
+		<td class="left">&nbsp;</td>
+		<td class="content">&nbsp;</td>
+		<td class="right">&nbsp;</td>
+	</tr><tr class="bottomRight">
+		<td class="top-left">&nbsp;</td>
+		<td class="top" colspan=7>&nbsp;</td>
+		<td class="middle-left">&nbsp;</td>
+		<td class="content"></td>
+		<td class="right">&nbsp;</td>
+	</tr><tr class="bottomRight">
+		<td class="left">&nbsp;</td>
+		<td class="content" colspan=9>c</td>
+		<td class="right">&nbsp;</td>
+	</tr><tr class="bottomRight">
+		<td class="bottom-left">&nbsp;</td>
+		<td class="bottom" colspan=9>&nbsp;</td>
+		<td class="bottom-right">&nbsp;</td>
+
+	</tr>
+</table>
+
+
+</body>
+</html>
